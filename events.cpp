@@ -5,6 +5,8 @@
 #include <sstream>
 #include <time.h>
 
+// messy code but don't feel like refactoring. enjoy
+
 enum flags {
     a,
     r,
@@ -73,6 +75,7 @@ flags hash(std::string const& inString) {
 }
 
 time_t date_to_ts(std::string date) {
+    // parses date and converts to unix timestamp
     int year,month,day,hour;
     struct tm t;
     year = atoi(date.substr(0,4).c_str());
@@ -88,8 +91,9 @@ time_t date_to_ts(std::string date) {
 }
 
 int main(int argc, char *argv[]) {
-    const char* PATH = "/home/reimu/.config/conky/lua/events";
-    const char* BUFFER_PATH = "/home/reimu/.config/conky/lua/events_buff";
+    const char* PATH = "/home/reimu/.config/conky/lua/events"; // path to data file to be parsed by conky
+    
+    const char* BUFFER_PATH = "/home/reimu/.config/conky/lua/events_buff"; // buffer for altering the file. this file shouldn't exist usually.
     if (argc < 3) {
         help_menu();
         return 0;
